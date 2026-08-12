@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tanmoy Jana, Ph.D. — Computational Biologist</title>
+<meta name="description" content="Tanmoy Jana, Ph.D. — Postdoctoral Researcher, Immunogenetics & Transplantation Laboratory, UCSF Department of Surgery. HLA immunogenomics, machine learning, computational drug discovery.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FFFFFF;
+    --bg-soft:#F5F7F7;
+    --ink:#1A1D22;
+    --ink-soft:#565B63;
+    --ink-faint:#9498A0;
+    --accent:#0B5C6B;
+    --accent-dark:#083F49;
+    --line:#E3E5E8;
+    --max:960px;
+    --gutter:clamp(20px, 5vw, 40px);
+  }
+  @media (min-width:1600px){
+    :root{ --max:1080px; }
+    body{font-size:17.5px;}
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important;}
+  }
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Inter', system-ui, sans-serif; font-size:16.5px; line-height:1.65; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3{font-family:'Lora', Georgia, serif; font-weight:600; margin:0; color:var(--ink);}
+  a{color:var(--accent);}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--accent); outline-offset:3px;}
+  .mono{font-family:'IBM Plex Mono', monospace;}
+  .wrap{max-width:var(--max); margin:0 auto; padding-left:var(--gutter); padding-right:var(--gutter);}
+  .eyebrow{font-family:'IBM Plex Mono', monospace; font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); font-weight:500;}
+
+  /* ---------- Nav ---------- */
+  header.site-header{position:sticky; top:0; z-index:50; background:rgba(255,255,255,0.94); backdrop-filter:blur(8px); border-bottom:1px solid var(--line);}
+  .nav-inner{max-width:var(--max); margin:0 auto; padding:14px var(--gutter); display:flex; align-items:center; justify-content:space-between; gap:16px; flex-wrap:wrap;}
+  .brand{display:flex; align-items:center; gap:10px; text-decoration:none;}
+  .brand-badge{width:34px; height:34px; border-radius:8px; background:linear-gradient(160deg, var(--accent), var(--accent-dark)); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .brand-badge span{font-family:'Lora', serif; font-weight:700; font-size:14px; color:#fff;}
+  .brand-text{line-height:1.15;}
+  .brand-text .name{font-family:'Lora', serif; font-weight:600; font-size:15px; color:var(--ink);}
+  .brand-text .sub{font-family:'IBM Plex Mono', monospace; font-size:10px; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.05em;}
+  nav.tabs{display:flex; gap:22px; flex-wrap:wrap;}
+  nav.tabs a{font-size:14px; color:var(--ink-soft); text-decoration:none; padding-bottom:2px; border-bottom:1px solid transparent; white-space:nowrap;}
+  nav.tabs a:hover{color:var(--accent); border-color:var(--accent);}
+  @media (max-width:700px){
+    .nav-inner{flex-wrap:nowrap;}
+    nav.tabs{flex-wrap:nowrap; overflow-x:auto; gap:18px; -webkit-overflow-scrolling:touch; scrollbar-width:none; padding-bottom:2px;}
+    nav.tabs::-webkit-scrollbar{display:none;}
+    .brand-text .sub{display:none;}
+  }
+
+  /* ---------- Hero banner ---------- */
+  .hero-banner{position:relative; overflow:hidden; background:linear-gradient(180deg, var(--bg-soft), var(--bg)); border-bottom:1px solid var(--line);}
+  .hero-svg{display:block; width:100%; height:auto; max-height:280px;}
+  .hero-title{padding:36px 0 44px; text-align:center;}
+  .hero-title h1{font-size:clamp(1.8rem, 4vw, 2.5rem);}
+  .hero-svg circle{animation:pulse 3.2s ease-in-out infinite;}
+  .hero-svg circle:nth-child(odd){animation-delay:0.6s;}
+  .hero-svg circle:nth-child(3n){animation-delay:1.2s;}
+  @keyframes pulse{0%,100%{opacity:0.55;}50%{opacity:1;}}
+  .signal-particles circle{animation:none;}
+  .float-labels text{opacity:0; animation:drift 6s ease-in-out infinite;}
+  .fl-1{animation-delay:0s;}
+  .fl-2{animation-delay:1s;}
+  .fl-3{animation-delay:2s;}
+  .fl-4{animation-delay:3s;}
+  .fl-5{animation-delay:4s;}
+  .fl-6{animation-delay:5s;}
+  @keyframes drift{
+    0%{opacity:0; transform:translateY(6px);}
+    15%{opacity:0.65; transform:translateY(0);}
+    75%{opacity:0.65; transform:translateY(-4px);}
+    100%{opacity:0; transform:translateY(-10px);}
+  }
+  @media (prefers-reduced-motion: reduce){.float-labels text{animation:none; opacity:0.5;}}
+  @media (prefers-reduced-motion: reduce){
+    .hero-svg circle{animation:none;}
+    .signal-particles{display:none;}
+    .data-ticker-track{animation:none !important; transform:none !important;}
+  }
+  .hero-title p{color:var(--ink-soft); margin-top:10px; font-size:1rem; max-width:560px; margin-left:auto; margin-right:auto;}
+
+  .data-ticker{overflow:hidden; border-top:1px solid var(--line); border-bottom:1px solid var(--line); background:var(--bg-soft);}
+  .data-ticker-track{display:flex; width:max-content; gap:0; animation:ticker 26s linear infinite;}
+  .data-ticker-track span{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-soft);
+    padding:10px 22px; border-right:1px solid var(--line); white-space:nowrap;
+  }
+  @keyframes ticker{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+  /* ---------- Sections ---------- */
+  section{padding:52px 0; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .section-head{margin-bottom:26px;}
+  .section-head h2{font-size:1.35rem;}
+  .reveal{opacity:0; transform:translateY(10px); transition:opacity 0.5s ease, transform 0.5s ease;}
+  .reveal.in{opacity:1; transform:translateY(0);}
+
+  /* ---------- About ---------- */
+  .about-grid{display:grid; grid-template-columns:1fr 220px; gap:36px; align-items:start;}
+  @media (max-width:760px){.about-grid{grid-template-columns:1fr 170px; gap:24px;}}
+  @media (max-width:640px){.about-grid{grid-template-columns:1fr;}}
+  @media (max-width:640px){.about-photo{max-width:220px; margin:0 auto;}}
+  .about-grid p{color:var(--ink-soft); font-size:1rem;}
+  .about-grid p + p{margin-top:14px;}
+  .about-photo{width:100%; aspect-ratio:1/1; border-radius:12px; overflow:hidden; position:relative; background:linear-gradient(160deg, var(--accent), var(--accent-dark)); display:flex; align-items:center; justify-content:center;}
+  .about-photo .monogram{font-family:'Lora', serif; font-size:3.2rem; color:#fff; font-weight:600;}
+  .about-photo img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover;}
+  .about-links{display:flex; flex-wrap:wrap; gap:12px 18px; margin-top:18px;}
+  .about-links a{font-size:13.5px; color:var(--ink-soft); text-decoration:none; border-bottom:1px solid var(--line); padding-bottom:1px;}
+  .about-links a:hover{color:var(--accent); border-color:var(--accent);}
+
+  .stat-strip{display:flex; flex-wrap:wrap; gap:0; margin-top:24px; border-top:1px solid var(--line);}
+  .stat{padding:14px 22px 0 0; margin-right:22px; border-right:1px solid var(--line);}
+  .stat:last-child{border-right:none;}
+  .stat .num{font-family:'Lora', serif; font-size:1.3rem; font-weight:600; color:var(--ink);}
+  .stat .label{font-family:'IBM Plex Mono', monospace; font-size:9.5px; text-transform:uppercase; letter-spacing:0.05em; color:var(--ink-faint); margin-top:2px;}
+  .stat-source{font-size:12px; color:var(--ink-faint); margin-top:12px;}
+
+  /* ---------- Latest news ---------- */
+  .news-list{list-style:none; margin:0; padding:0;}
+  .news-row{display:grid; grid-template-columns:130px 1fr; gap:18px; padding:14px 0; border-top:1px solid var(--line);}
+  .news-row:first-child{border-top:none; padding-top:0;}
+  @media (max-width:520px){.news-row{grid-template-columns:1fr; gap:2px;}}
+  .news-date{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-faint); padding-top:1px;}
+  .news-text{font-size:0.96rem; color:var(--ink);}
+
+  /* ---------- Research list ---------- */
+  .research-list{margin:0; padding:0; list-style:none;}
+  .research-list li{padding:16px 0; border-top:1px solid var(--line);}
+  .research-list li:first-child{border-top:none; padding-top:0;}
+  .research-list h3{font-size:1.02rem;}
+  .research-list p{font-size:0.94rem; color:var(--ink-soft); margin:6px 0 0;}
+  .skills-line{font-size:0.92rem; color:var(--ink-soft);}
+
+  /* ---------- Experience ---------- */
+  .exp-list{margin:0; padding:0; list-style:none;}
+  .exp-row{display:grid; grid-template-columns:118px 1fr; gap:18px; padding:16px 0; border-top:1px solid var(--line);}
+  .exp-row:first-child{border-top:none; padding-top:0;}
+  @media (max-width:520px){.exp-row{grid-template-columns:1fr; gap:4px;}}
+  .exp-year{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-faint); padding-top:2px;}
+  .exp-role{font-weight:600; font-size:0.98rem;}
+  .exp-org{color:var(--ink-soft); font-size:0.92rem; margin-top:2px;}
+  .exp-advisor{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-faint); margin-top:6px;}
+
+  /* ---------- Databases ---------- */
+  .db-list{margin:0; padding:0; list-style:none;}
+  .db-row{display:grid; grid-template-columns:1fr auto; gap:12px; align-items:baseline; padding:14px 0; border-top:1px solid var(--line);}
+  .db-row:first-child{border-top:none; padding-top:0;}
+  .db-row h3{font-size:0.98rem; display:inline;}
+  .db-row .tag{font-family:'IBM Plex Mono', monospace; font-size:10px; text-transform:uppercase; letter-spacing:0.05em; color:var(--accent); margin-left:8px;}
+  .db-row p{font-size:0.9rem; color:var(--ink-soft); margin:4px 0 0;}
+  .db-row .yr{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-faint); white-space:nowrap;}
+  @media (max-width:520px){
+    .db-row{grid-template-columns:1fr;}
+    .db-row .yr{margin-top:2px;}
+  }
+
+  /* ---------- Publications ---------- */
+  .pub-list{list-style:none; margin:0; padding:0; counter-reset:pub;}
+  .pub-list li{counter-increment:pub; display:grid; grid-template-columns:26px 1fr; gap:12px; padding:14px 0; border-top:1px solid var(--line); font-size:0.94rem;}
+  .pub-list li:first-child{border-top:none; padding-top:0;}
+  .pub-list li::before{content:counter(pub) "."; font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-faint);}
+  .pub-list .venue{color:var(--accent); font-style:italic;}
+  .pub-list .yr{color:var(--ink-faint); font-family:'IBM Plex Mono', monospace; font-size:11.5px;}
+  .prep-list{list-style:none; margin:18px 0 0; padding:16px 0 0; border-top:1px dashed var(--line);}
+  .prep-list li{font-size:0.9rem; color:var(--ink-soft); padding:6px 0;}
+  .prep-list b{color:var(--ink);}
+  .pub-note{margin-top:20px; font-size:0.88rem; color:var(--ink-soft);}
+
+  /* ---------- Footer (lab-page style) ---------- */
+  footer.page-footer{background:var(--bg-soft); padding:44px 0 32px;}
+  .footer-grid{display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-start; gap:24px;}
+  .footer-org{}
+  .footer-org .name{font-family:'Lora', serif; font-weight:600; font-size:1.05rem;}
+  .footer-address{color:var(--ink-soft); font-size:0.9rem; margin-top:8px; line-height:1.6;}
+  .icon-row{display:flex; gap:10px; flex-wrap:wrap;}
+  .icon-btn{
+    width:38px; height:38px; border-radius:50%; border:1px solid var(--line); background:#fff;
+    display:flex; align-items:center; justify-content:center; color:var(--ink-soft); text-decoration:none;
+    transition:background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  }
+  .icon-btn:hover{background:var(--accent); border-color:var(--accent); color:#fff;}
+  .icon-btn svg{width:16px; height:16px; fill:currentColor;}
+  .footer-meta{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-faint); margin-top:32px; border-top:1px solid var(--line); padding-top:16px;}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="nav-inner">
+    <a class="brand" href="#top">
+      <span class="brand-badge"><span>TJ</span></span>
+      <span class="brand-text"><span class="name">Tanmoy Jana</span><br><span class="sub">Computational Biologist</span></span>
+    </a>
+    <nav class="tabs" aria-label="Section navigation">
+      <a href="#about">About</a>
+      <a href="#news">News</a>
+      <a href="#research">Research</a>
+      <a href="#experience">Experience</a>
+      <a href="#publications">Publications</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section class="hero-banner" id="top">
+  <svg class="hero-svg" viewBox="0 0 1200 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animated illustration of a deep neural network processing data">
+    <defs>
+      <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#0B5C6B"/>
+        <stop offset="100%" stop-color="#083F49"/>
+      </linearGradient>
+      <path id="route1" d="M170,70 L430,45 L690,45 L950,70 L1120,110" fill="none"/>
+      <path id="route2" d="M170,130 L430,95 L690,95 L950,130 L1120,110" fill="none"/>
+      <path id="route3" d="M170,190 L430,145 L690,145 L950,190 L1120,190" fill="none"/>
+      <path id="route4" d="M170,250 L430,245 L690,245 L950,250 L1120,190" fill="none"/>
+    </defs>
+    <g fill="none" stroke="#0B5C6B" stroke-width="0.9" opacity="0.3">
+      <!-- connections input(4)@x=170 -> hidden1(6)@x=430 -->
+      <line x1="170" y1="70"  x2="430" y2="45"/><line x1="170" y1="70"  x2="430" y2="95"/><line x1="170" y1="70"  x2="430" y2="145"/><line x1="170" y1="70"  x2="430" y2="195"/><line x1="170" y1="70"  x2="430" y2="245"/>
+      <line x1="170" y1="130" x2="430" y2="45"/><line x1="170" y1="130" x2="430" y2="95"/><line x1="170" y1="130" x2="430" y2="145"/><line x1="170" y1="130" x2="430" y2="195"/><line x1="170" y1="130" x2="430" y2="245"/>
+      <line x1="170" y1="190" x2="430" y2="45"/><line x1="170" y1="190" x2="430" y2="95"/><line x1="170" y1="190" x2="430" y2="145"/><line x1="170" y1="190" x2="430" y2="195"/><line x1="170" y1="190" x2="430" y2="245"/>
+      <line x1="170" y1="250" x2="430" y2="45"/><line x1="170" y1="250" x2="430" y2="95"/><line x1="170" y1="250" x2="430" y2="145"/><line x1="170" y1="250" x2="430" y2="195"/><line x1="170" y1="250" x2="430" y2="245"/>
+      <!-- hidden1(6)@x=430 -> hidden2(6)@x=690 -->
+      <line x1="430" y1="45"  x2="690" y2="45"/><line x1="430" y1="45"  x2="690" y2="95"/><line x1="430" y1="45"  x2="690" y2="145"/>
+      <line x1="430" y1="95"  x2="690" y2="45"/><line x1="430" y1="95"  x2="690" y2="95"/><line x1="430" y1="95"  x2="690" y2="145"/><line x1="430" y1="95"  x2="690" y2="195"/>
+      <line x1="430" y1="145" x2="690" y2="45"/><line x1="430" y1="145" x2="690" y2="95"/><line x1="430" y1="145" x2="690" y2="145"/><line x1="430" y1="145" x2="690" y2="195"/><line x1="430" y1="145" x2="690" y2="245"/>
+      <line x1="430" y1="195" x2="690" y2="95"/><line x1="430" y1="195" x2="690" y2="145"/><line x1="430" y1="195" x2="690" y2="195"/><line x1="430" y1="195" x2="690" y2="245"/>
+      <line x1="430" y1="245" x2="690" y2="145"/><line x1="430" y1="245" x2="690" y2="195"/><line x1="430" y1="245" x2="690" y2="245"/>
+      <!-- hidden2(6)@x=690 -> hidden3(5)@x=950 -->
+      <line x1="690" y1="45"  x2="950" y2="70"/><line x1="690" y1="45"  x2="950" y2="130"/>
+      <line x1="690" y1="95"  x2="950" y2="70"/><line x1="690" y1="95"  x2="950" y2="130"/><line x1="690" y1="95"  x2="950" y2="190"/>
+      <line x1="690" y1="145" x2="950" y2="70"/><line x1="690" y1="145" x2="950" y2="130"/><line x1="690" y1="145" x2="950" y2="190"/><line x1="690" y1="145" x2="950" y2="250"/>
+      <line x1="690" y1="195" x2="950" y2="70"/><line x1="690" y1="195" x2="950" y2="130"/><line x1="690" y1="195" x2="950" y2="190"/><line x1="690" y1="195" x2="950" y2="250"/>
+      <line x1="690" y1="245" x2="950" y2="130"/><line x1="690" y1="245" x2="950" y2="190"/><line x1="690" y1="245" x2="950" y2="250"/>
+      <!-- hidden3(5)@x=950 -> output(2)@x=1120 -->
+      <line x1="950" y1="70"  x2="1120" y2="110"/><line x1="950" y1="130" x2="1120" y2="110"/><line x1="950" y1="130" x2="1120" y2="190"/>
+      <line x1="950" y1="190" x2="1120" y2="110"/><line x1="950" y1="190" x2="1120" y2="190"/><line x1="950" y1="250" x2="1120" y2="190"/>
+    </g>
+    <g fill="#0B5C6B">
+      <circle cx="170" cy="70" r="6" opacity="0.55"/><circle cx="170" cy="130" r="6" opacity="0.55"/><circle cx="170" cy="190" r="6" opacity="0.55"/><circle cx="170" cy="250" r="6" opacity="0.55"/>
+      <circle cx="430" cy="45" r="6" opacity="0.75"/><circle cx="430" cy="95" r="6" opacity="0.75"/><circle cx="430" cy="145" r="6" opacity="0.75"/><circle cx="430" cy="195" r="6" opacity="0.75"/><circle cx="430" cy="245" r="6" opacity="0.75"/>
+      <circle cx="690" cy="45" r="6" opacity="0.85"/><circle cx="690" cy="95" r="6" opacity="0.85"/><circle cx="690" cy="145" r="6" opacity="0.85"/><circle cx="690" cy="195" r="6" opacity="0.85"/><circle cx="690" cy="245" r="6" opacity="0.85"/>
+      <circle cx="950" cy="70" r="6" opacity="0.75"/><circle cx="950" cy="130" r="6" opacity="0.75"/><circle cx="950" cy="190" r="6" opacity="0.75"/><circle cx="950" cy="250" r="6" opacity="0.75"/>
+      <circle cx="1120" cy="110" r="7" opacity="0.9"/><circle cx="1120" cy="190" r="7" opacity="0.9"/>
+    </g>
+    <!-- traveling signal particles: give the network a live, "data flowing through the model" motion -->
+    <g class="signal-particles" fill="#F0455B">
+      <circle r="4"><animateMotion dur="3.4s" begin="0s"   repeatCount="indefinite"><mpath href="#route1"/></animateMotion></circle>
+      <circle r="4"><animateMotion dur="3.4s" begin="1.7s" repeatCount="indefinite"><mpath href="#route1"/></animateMotion></circle>
+      <circle r="4"><animateMotion dur="3.8s" begin="0.5s" repeatCount="indefinite"><mpath href="#route2"/></animateMotion></circle>
+      <circle r="4"><animateMotion dur="3.8s" begin="2.4s" repeatCount="indefinite"><mpath href="#route2"/></animateMotion></circle>
+      <circle r="4"><animateMotion dur="3.6s" begin="1.0s" repeatCount="indefinite"><mpath href="#route3"/></animateMotion></circle>
+      <circle r="4"><animateMotion dur="3.6s" begin="2.9s" repeatCount="indefinite"><mpath href="#route3"/></animateMotion></circle>
+      <circle r="4"><animateMotion dur="4.0s" begin="1.5s" repeatCount="indefinite"><mpath href="#route4"/></animateMotion></circle>
+      <circle r="4"><animateMotion dur="4.0s" begin="3.3s" repeatCount="indefinite"><mpath href="#route4"/></animateMotion></circle>
+    </g>
+    <!-- floating ML terminology, drifting near the network itself -->
+    <g class="float-labels" font-family="IBM Plex Mono, monospace" fill="#0B5C6B">
+      <text x="300" y="30" font-size="13" class="fl fl-1">tanh</text>
+      <text x="560" y="270" font-size="13" class="fl fl-2">ReLU</text>
+      <text x="810" y="35" font-size="13" class="fl fl-3">w · x + b</text>
+      <text x="60" y="270" font-size="13" class="fl fl-4">learning rate</text>
+      <text x="1030" y="255" font-size="13" class="fl fl-5">softmax</text>
+      <text x="300" y="270" font-size="13" class="fl fl-6">∂L / ∂w</text>
+    </g>
+  </svg>
+
+  <div class="data-ticker" aria-hidden="true">
+    <div class="data-ticker-track">
+      <span>weights</span><span>parameters</span><span>classification</span><span>regression</span><span>learning rate</span><span>tanh</span><span>activation function</span><span>ReLU</span><span>sigmoid</span><span>softmax</span><span>gradient descent</span><span>backpropagation</span><span>loss function</span><span>epoch</span><span>batch size</span><span>attention</span><span>transformer</span><span>embedding</span><span>fine-tuning</span><span>LLM</span>
+      <span>weights</span><span>parameters</span><span>classification</span><span>regression</span><span>learning rate</span><span>tanh</span><span>activation function</span><span>ReLU</span><span>sigmoid</span><span>softmax</span><span>gradient descent</span><span>backpropagation</span><span>loss function</span><span>epoch</span><span>batch size</span><span>attention</span><span>transformer</span><span>embedding</span><span>fine-tuning</span><span>LLM</span>
+    </div>
+  </div>
+
+  <div class="wrap hero-title">
+    <h1>Tanmoy Jana, Ph.D.</h1>
+    <p>Postdoctoral Researcher, Immunogenetics &amp; Transplantation Laboratory, Department of Surgery, University of California, San Francisco.</p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">About</span>
+      <h2 style="margin-top:8px;">About Tanmoy</h2>
+    </div>
+    <div class="about-grid reveal">
+      <div>
+        <p>I'm a researcher applying artificial intelligence and machine learning to complex biological, transplantation-immunology, and computational biology problems. My work sits at the intersection of clinical immunogenetics and AI — classifying cross-reactive epitope groups from patient sera, modeling single-cell immune landscapes in disease, and screening small molecules against oncogenic protein–protein interactions.</p>
+        <p>My path runs from a cholera research institute in Kolkata, through cancer bioinformatics at Bose Institute, to three labs across UCSD and UCSF. I also peer-review for PLOS ONE, the Journal of Optimization Theory and Applications, the Journal of the Indian Society of Remote Sensing, and two Frontiers journals.</p>
+
+        <div class="about-links">
+          <a href="https://profiles.ucsf.edu/tanmoy.jana" target="_blank" rel="noopener">UCSF Profiles</a>
+          <a href="https://scholar.google.com/citations?user=7i633QgAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
+          <a href="https://www.researchgate.net/profile/Tanmoy-Jana" target="_blank" rel="noopener">ResearchGate</a>
+          <a href="https://github.com/janatanmoy5" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/tanmoy-jana-864b7a43" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://orcid.org/0000-0003-1321-2240" target="_blank" rel="noopener">ORCID</a>
+          <a href="./assets/Tanmoy_Jana_CV.pdf" target="_blank" rel="noopener">View CV (PDF)</a>
+        </div>
+
+        <div class="stat-strip">
+          <div class="stat"><div class="num">153</div><div class="label">Citations (Scholar)</div></div>
+          <div class="stat"><div class="num">6</div><div class="label">h-index (Scholar)</div></div>
+          <div class="stat"><div class="num">5</div><div class="label">i10-index</div></div>
+          <div class="stat"><div class="num">144</div><div class="label">Citations (RG)</div></div>
+          <div class="stat"><div class="num">7</div><div class="label">h-index (RG)</div></div>
+          <div class="stat"><div class="num">108.5</div><div class="label">RG Interest Score</div></div>
+        </div>
+        <p class="stat-source">Google Scholar &amp; ResearchGate, Aug 2026</p>
+      </div>
+
+      <div class="about-photo">
+        <span class="monogram">TJ</span>
+        <img src="./assets/portrait.jpg" alt="Portrait of Tanmoy Jana" onerror="this.style.display='none'">
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="news">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Latest news</span>
+      <h2 style="margin-top:8px;">Updates</h2>
+    </div>
+    <ul class="news-list reveal">
+      <li class="news-row"><div class="news-date">Dec 2025</div><div class="news-text">Completed Advanced Certifications in AI, Data Science &amp; Research Ethics at MIT, covering responsible AI and human-subjects research ethics.</div></li>
+      <li class="news-row"><div class="news-date">Dec 2024</div><div class="news-text">Joined the Immunogenetics &amp; Transplantation Laboratory at UCSF under Dr. Rajalingam Raja, building a machine-learning platform for HLA cross-reactive epitope group classification.</div></li>
+      <li class="news-row"><div class="news-date">2023</div><div class="news-text">Presented a poster on immune cell network inference in sarcoidosis at the UCSF Pulmonary Retreat.</div></li>
+      <li class="news-row"><div class="news-date">May 2023</div><div class="news-text">Completed single-cell RNA-seq analysis training at Columbia University.</div></li>
+      <li class="news-row"><div class="news-date">Ongoing</div><div class="news-text">Reviewing manuscripts for PLOS ONE, JOTA, the Journal of the Indian Society of Remote Sensing, and Frontiers journals.</div></li>
+    </ul>
+  </div>
+</section>
+
+<section id="research">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Research interests</span>
+      <h2 style="margin-top:8px;">What I work on</h2>
+    </div>
+    <ul class="research-list reveal">
+      <li><h3>AI &amp; ML for transplantation and computational biology</h3><p>Applying artificial intelligence and machine learning models to complex biological, transplant-immunology, and computational biology problems — turning high-dimensional clinical and molecular data into models that inform real decisions in the clinic and the lab.</p></li>
+      <li><h3>Immunogenomics &amp; HLA analytics</h3><p>A clinical platform classifying cross-reactive epitope groups (CREGs) from HLA antibody binding patterns in patient sera, to improve donor–recipient compatibility, graft survival, and reduce sensitization and rejection risk.</p></li>
+      <li><h3>AI &amp; machine learning for biomedical data</h3><p>Predictive and prognostic models from EHR and multi-omics data; protein–protein interaction and signaling-pathway analysis; single-cell approaches to immune cell states and cell–cell communication.</p></li>
+      <li><h3>Multimodal AI &amp; vision–language models</h3><p>Multimodal LLMs integrating radiology imaging with clinical narratives (e.g. MIMIC datasets) to support clinical decision-making and outcome prediction.</p></li>
+      <li><h3>Gene expression &amp; single-cell modeling</h3><p>Deep learning-based comparison of disease versus healthy transcriptomes for immune and non-immune cell classification and functional state prediction.</p></li>
+      <li><h3>AI-driven drug discovery</h3><p>Pharmacophore modeling, docking, and virtual screening of small-molecule libraries for oncogenic PPI target identification and lead optimization.</p></li>
+    </ul>
+    <p class="skills-line" style="margin-top:24px;"><span class="eyebrow" style="display:block; margin-bottom:8px;">Tools</span>Seurat · Scanpy · Muon · CellTypist · AutoDock Vina · PyMOL · Chimera · Python · R · SQL · Git · HPC</p>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Experience</span>
+      <h2 style="margin-top:8px;">Positions</h2>
+    </div>
+    <ul class="exp-list reveal">
+      <li class="exp-row"><div class="exp-year">2024 — present</div><div><div class="exp-role">Postdoctoral Researcher</div><div class="exp-org">University of California, San Francisco — Dept. of Surgery</div><div class="exp-advisor">Advisor: Rajalingam Raja, PhD</div></div></li>
+      <li class="exp-row"><div class="exp-year">2022 — 2024</div><div><div class="exp-role">Postdoctoral Researcher</div><div class="exp-org">University of California, San Francisco</div><div class="exp-advisor">Advisors: Prof. Laura Koth · Prof. Mark Ansel</div></div></li>
+      <li class="exp-row"><div class="exp-year">Sep – Dec 2022</div><div><div class="exp-role">Visiting Mentored Researcher</div><div class="exp-org">Salk Institute for Biological Studies, San Diego</div><div class="exp-advisor">Advisor: Prof. Uri Manor</div></div></li>
+      <li class="exp-row"><div class="exp-year">2021 — 2022</div><div><div class="exp-role">Postdoctoral Researcher</div><div class="exp-org">University of California, San Diego</div><div class="exp-advisor">Advisor: Prof. Rodney Gabriel</div></div></li>
+      <li class="exp-row"><div class="exp-year">2020 — 2021</div><div><div class="exp-role">Postdoctoral Research Associate</div><div class="exp-org">ICMR–National Institute for Research in Bacterial Infections, Kolkata</div><div class="exp-advisor">Advisor: Dr. Santasabuj Das, Scientist G &amp; Director</div></div></li>
+      <li class="exp-row"><div class="exp-year">2015 — 2019</div><div><div class="exp-role">Ph.D. Graduate Researcher — Bioinformatics</div><div class="exp-org">Maulana Abul Kalam Azad Univ. of Technology; research at Bose Institute, Kolkata</div><div class="exp-advisor">Advisors: Prof. Sudipto Saha · Prof. Raja Banerjee</div></div></li>
+      <li class="exp-row"><div class="exp-year">2012 — 2015</div><div><div class="exp-role">Research Assistant</div><div class="exp-org">Bose Institute, Kolkata</div><div class="exp-advisor">Advisor: Prof. Sudipto Saha</div></div></li>
+    </ul>
+  </div>
+</section>
+
+<section id="databases">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Projects</span>
+      <h2 style="margin-top:8px;">Databases &amp; web servers</h2>
+    </div>
+    <ul class="db-list reveal">
+      <li class="db-row"><div><h3>PPIMpred</h3><span class="tag">Web server</span><p>High-throughput screening of small molecules targeting protein–protein interactions.</p></div><div class="yr">R. Soc. Open Sci., 2017</div></li>
+      <li class="db-row"><div><h3>LMDIPred</h3><span class="tag">Predictor</span><p>Predicts linear peptide sequences binding SH3, WW, and PDZ domains.</p></div><div class="yr">PLoS ONE, 2018</div></li>
+      <li class="db-row"><div><h3>LMPID</h3><span class="tag">Database</span><p>Curated database of linear motifs mediating protein–protein interactions.</p></div><div class="yr">Database, 2015</div></li>
+      <li class="db-row"><div><h3>MYCbase</h3><span class="tag">Database</span><p>Functional sites and biochemical properties of Myc in normal and cancer cells.</p></div><div class="yr">BMC Bioinformatics, 2017</div></li>
+      <li class="db-row"><div><h3>PSCRIdb</h3><span class="tag">Database</span><p>Regulatory interactions and networks of pluripotent stem cell lines.</p></div><div class="yr">J. Biosci., 2020</div></li>
+      <li class="db-row"><div><h3>DAAB / DAAB-V2</h3><span class="tag">Database</span><p>Curated database of allergy and asthma biomarkers.</p></div><div class="yr">Clin. Exp. Allergy 2015 · Allergy 2021</div></li>
+      <li class="db-row"><div><h3>RHO Database</h3><span class="tag">Database</span><p>Bacterial ring-hydroxylating oxygenases for bioremediation &amp; biocatalysis.</p></div><div class="yr">Environ. Microbiol. Rep., 2014</div></li>
+    </ul>
+  </div>
+</section>
+
+<section id="publications">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Publications</span>
+      <h2 style="margin-top:8px;">Peer-reviewed papers</h2>
+    </div>
+    <ol class="pub-list reveal">
+      <li><div><span class="venue">Indian J. Med. Res.</span> <span class="yr">2024</span><br>Jana, T., Sarkar, D., Ganguli, D., Mukherjee, S. K., Mandal, R. S. &amp; Das, S. ABDpred: Prediction of active antimicrobial compounds using supervised machine learning techniques. 159, 78–90.</div></li>
+      <li><div><span class="venue">Allergy</span> <span class="yr">2021</span><br>Majumdar, S., Bhattacharjee, S., Jana, T. &amp; Saha, S. DAAB-V2: Updated database of allergy and asthma biomarkers. 45, 1.</div></li>
+      <li><div><span class="venue">J. Biosci.</span> <span class="yr">2020</span><br>Banerjee, K., Jana, T., Ghosh, Z. &amp; Saha, S. PSCRIdb: A database of regulatory interactions and networks of pluripotent stem cell lines. 45, 1.</div></li>
+      <li><div><span class="venue">PLoS ONE</span> <span class="yr">2018</span><br>Sarkar, D., Jana, T. &amp; Saha, S. LMDIPred: A web server for predicting linear peptide sequences that bind to SH3, WW, and PDZ domains. 13, e0200430.</div></li>
+      <li><div><span class="venue">BMC Bioinformatics</span> <span class="yr">2017</span><br>Chakravorty, D., Jana, T., Mandal, S. D., Seth, A., Bhattacharya, A. &amp; Saha, S. MYCbase: A database of functional sites and biochemical properties of Myc in both normal and cancer cells. 18, 1.</div></li>
+      <li><div><span class="venue">R. Soc. Open Sci.</span> <span class="yr">2017</span><br>Jana, T., Ghosh, A., Mandal, S. D., Banerjee, R. &amp; Saha, S. PPIMpred: A web server for high-throughput screening of small molecules targeting protein–protein interactions. 4, 160501.</div></li>
+      <li><div><span class="venue">Clin. Exp. Allergy</span> <span class="yr">2015</span><br>Sircar, G., Saha, B., Jana, T., Dasgupta, A., Bhattacharya, S. G. &amp; Saha, S. DAAB: A manually curated database of allergy and asthma biomarkers. 45, 1259–1261.</div></li>
+      <li><div><span class="venue">PLoS ONE</span> <span class="yr">2015</span><br>Barman, R. K., Jana, T., Das, S. &amp; Saha, S. Prediction of intra-species protein–protein interactions in enteropathogens facilitating systems biology study. 10, e0143774.</div></li>
+      <li><div><span class="venue">Database</span> <span class="yr">2015</span><br>Sarkar, D., Jana, T. &amp; Saha, S. LMPID: A manually curated database of linear motifs mediating protein–protein interactions. 2015, bav101.</div></li>
+      <li><div><span class="venue">Environ. Microbiol. Rep.</span> <span class="yr">2014</span><br>Chakraborty, J., Jana, T., Saha, S. &amp; Dutta, T. K. Ring-hydroxylating oxygenase database: A database of bacterial aromatic ring-hydroxylating oxygenases in bioremediation and biocatalysis. 6, 519–523.</div></li>
+    </ol>
+    <ul class="prep-list reveal">
+      <li><b>In preparation —</b> Jana, T., Raghav, P. K., Gente, G. &amp; Rajalingam, R. Predicting cross-reactive epitope groups in HLA class I and II using machine learning.</li>
+      <li><b>In preparation —</b> Jana, T., Koth, L. &amp; Ansel, M. Systematic computational mapping of immune cells from bronchoalveolar lavage and peripheral blood in sarcoidosis at single-cell resolution.</li>
+      <li><b>In preparation —</b> Jana, T. &amp; Gabriel, R. A. Machine learning approaches to predicting same-day discharge after total hip arthroplasty using ACS NSQIP data.</li>
+      <li><b>In preparation —</b> Jana, T., Karmakar, J., Banerjee, R. &amp; Saha, S. Supervised learning-driven prediction of small-molecule modulator activity against protein–protein interactions.</li>
+    </ul>
+    <p class="pub-note reveal">Full, continuously updated list with citation counts on <a href="https://scholar.google.com/citations?user=7i633QgAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="page-footer" id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-org">
+        <div class="name">Tanmoy Jana, Ph.D.</div>
+        <div class="footer-address">
+          Immunogenetics &amp; Transplantation Laboratory<br>
+          Department of Surgery, UCSF<br>
+          1100 Van Ness Ave, Suite 800<br>
+          San Francisco, CA 94109
+        </div>
+      </div>
+      <div class="icon-row">
+        <a class="icon-btn" href="https://profiles.ucsf.edu/tanmoy.jana" target="_blank" rel="noopener" aria-label="UCSF Profiles" title="UCSF Profiles">
+          <svg viewBox="0 0 24 24"><path d="M12 2L1 8l11 6 9-4.91V17h2V8L12 2zM5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/></svg>
+        </a>
+        <a class="icon-btn" href="mailto:janatanmoy5@gmail.com" aria-label="Email" title="Email">
+          <svg viewBox="0 0 24 24"><path d="M2 4h20v16H2V4zm2 2v.01L12 12l8-5.99V6H4zm16 12V8.24l-8 6-8-6V18h16z"/></svg>
+        </a>
+        <a class="icon-btn" href="https://scholar.google.com/citations?user=7i633QgAAAAJ&hl=en" target="_blank" rel="noopener" aria-label="Google Scholar" title="Google Scholar">
+          <svg viewBox="0 0 24 24"><path d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z"/></svg>
+        </a>
+        <a class="icon-btn" href="https://orcid.org/0000-0003-1321-2240" target="_blank" rel="noopener" aria-label="ORCID" title="ORCID">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM7.7 7.3a1.15 1.15 0 110 2.3 1.15 1.15 0 010-2.3zM8.6 18h-1.8V10.5h1.8V18zm2.7-7.5h3.4c3.2 0 4.6 2.3 4.6 3.75 0 2.05-1.6 3.75-4.6 3.75h-3.4v-7.5zm1.8 1.6v4.3h1.5c2 0 2.9-1.1 2.9-2.15 0-.9-.6-2.15-2.9-2.15h-1.5z"/></svg>
+        </a>
+        <a class="icon-btn" href="https://www.linkedin.com/in/tanmoy-jana-864b7a43" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M6.94 5a2 2 0 11-4-.002 2 2 0 014 .002zM7 8.48H3V21h4V8.48zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-3.96 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48z"/></svg>
+        </a>
+        <a class="icon-btn" href="https://github.com/janatanmoy5" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 00-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.91.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.53 9.53 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.84-2.35 4.68-4.58 4.93.36.31.68.92.68 1.85V21c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg>
+        </a>
+        <a class="icon-btn" href="https://www.researchgate.net/profile/Tanmoy-Jana" target="_blank" rel="noopener" aria-label="ResearchGate" title="ResearchGate">
+          <svg viewBox="0 0 24 24"><path d="M19.586 0c-.818 0-1.508.19-2.073.565-.563.377-.97.936-1.213 1.68a3.193 3.193 0 00-.148.507 8.66 8.66 0 00-.078.575 9.334 9.334 0 00-.026.44v.44l.006 17.42c.087.24.325.373.618.373.293 0 .518-.13.618-.373V6.7l4.15 14.5c.1.243.325.373.618.373.293 0 .53-.13.618-.373L24 4.5v16.13c0 .24.24.373.53.373s.53-.13.53-.373V.4C25.06.16 24.82.03 24.53.03s-.53.13-.53.373v.6L20.06 15.2 16.03 1.003c-.1-.243-.336-.373-.629-.373zM4.414 3.5c-2.44 0-4.414 1.97-4.414 4.4 0 2.44 1.974 4.414 4.414 4.414h1.62v-1.8h-1.62c-1.44 0-2.6-1.17-2.6-2.614 0-1.44 1.16-2.6 2.6-2.6h1.62V3.5H4.414z"/></svg>
+        </a>
+      </div>
+    </div>
+    <p class="footer-meta">© 2026 Tanmoy Jana. Built as a static page — no tracking, no cookies.</p>
+  </div>
+</footer>
+
+<script>
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealEls = document.querySelectorAll('.reveal');
+  if (prefersReduced || !('IntersectionObserver' in window)) {
+    revealEls.forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    revealEls.forEach(el => io.observe(el));
+  }
+</script>
+
+</body>
+</html>
