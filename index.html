@@ -165,6 +165,25 @@
     .db-row .yr{margin-top:2px;}
   }
 
+  /* ---------- Repositories ---------- */
+  .repo-list{margin:0; padding:0; list-style:none;}
+  .repo-row{display:grid; grid-template-columns:1fr auto; align-items:baseline; gap:10px 16px; padding:13px 0; border-top:1px solid var(--line);}
+  .repo-row:first-child{border-top:none; padding-top:0;}
+  .repo-name{font-family:'IBM Plex Mono', monospace; font-size:0.96rem; font-weight:500; text-decoration:none; color:var(--ink);}
+  .repo-name:hover{color:var(--accent);}
+  .repo-desc{color:var(--ink-soft); font-size:0.88rem;}
+  .repo-desc::before{content:"— ";}
+  .repo-meta{font-family:'IBM Plex Mono', monospace; font-size:11px; color:var(--ink-faint); white-space:nowrap; display:flex; align-items:center; gap:8px;}
+  .repo-dot{width:8px; height:8px; border-radius:50%; display:inline-block; flex-shrink:0;}
+  .repo-dot.py{background:#3572A5;}
+  .repo-dot.html{background:#e34c26;}
+  .repo-dot.ipynb{background:#DA5B0B;}
+  .repo-dot.none{background:var(--ink-faint);}
+  @media (max-width:560px){
+    .repo-row{grid-template-columns:1fr;}
+    .repo-meta{margin-top:1px;}
+  }
+
   /* ---------- Publications ---------- */
   .pub-list{list-style:none; margin:0; padding:0; counter-reset:pub;}
   .pub-list li{counter-increment:pub; display:grid; grid-template-columns:26px 1fr; gap:12px; padding:14px 0; border-top:1px solid var(--line); font-size:0.94rem;}
@@ -207,6 +226,7 @@
       <a href="#news">News</a>
       <a href="#research">Research</a>
       <a href="#experience">Experience</a>
+      <a href="#repos">Repositories</a>
       <a href="#publications">Publications</a>
     </nav>
   </div>
@@ -227,24 +247,20 @@
       <path id="route4" d="M170,250 L430,245 L690,245 L950,250 L1120,190" fill="none"/>
     </defs>
     <g fill="none" stroke="#0B5C6B" stroke-width="0.9" opacity="0.3">
-      <!-- connections input(4)@x=170 -> hidden1(6)@x=430 -->
       <line x1="170" y1="70"  x2="430" y2="45"/><line x1="170" y1="70"  x2="430" y2="95"/><line x1="170" y1="70"  x2="430" y2="145"/><line x1="170" y1="70"  x2="430" y2="195"/><line x1="170" y1="70"  x2="430" y2="245"/>
       <line x1="170" y1="130" x2="430" y2="45"/><line x1="170" y1="130" x2="430" y2="95"/><line x1="170" y1="130" x2="430" y2="145"/><line x1="170" y1="130" x2="430" y2="195"/><line x1="170" y1="130" x2="430" y2="245"/>
       <line x1="170" y1="190" x2="430" y2="45"/><line x1="170" y1="190" x2="430" y2="95"/><line x1="170" y1="190" x2="430" y2="145"/><line x1="170" y1="190" x2="430" y2="195"/><line x1="170" y1="190" x2="430" y2="245"/>
       <line x1="170" y1="250" x2="430" y2="45"/><line x1="170" y1="250" x2="430" y2="95"/><line x1="170" y1="250" x2="430" y2="145"/><line x1="170" y1="250" x2="430" y2="195"/><line x1="170" y1="250" x2="430" y2="245"/>
-      <!-- hidden1(6)@x=430 -> hidden2(6)@x=690 -->
       <line x1="430" y1="45"  x2="690" y2="45"/><line x1="430" y1="45"  x2="690" y2="95"/><line x1="430" y1="45"  x2="690" y2="145"/>
       <line x1="430" y1="95"  x2="690" y2="45"/><line x1="430" y1="95"  x2="690" y2="95"/><line x1="430" y1="95"  x2="690" y2="145"/><line x1="430" y1="95"  x2="690" y2="195"/>
       <line x1="430" y1="145" x2="690" y2="45"/><line x1="430" y1="145" x2="690" y2="95"/><line x1="430" y1="145" x2="690" y2="145"/><line x1="430" y1="145" x2="690" y2="195"/><line x1="430" y1="145" x2="690" y2="245"/>
       <line x1="430" y1="195" x2="690" y2="95"/><line x1="430" y1="195" x2="690" y2="145"/><line x1="430" y1="195" x2="690" y2="195"/><line x1="430" y1="195" x2="690" y2="245"/>
       <line x1="430" y1="245" x2="690" y2="145"/><line x1="430" y1="245" x2="690" y2="195"/><line x1="430" y1="245" x2="690" y2="245"/>
-      <!-- hidden2(6)@x=690 -> hidden3(5)@x=950 -->
       <line x1="690" y1="45"  x2="950" y2="70"/><line x1="690" y1="45"  x2="950" y2="130"/>
       <line x1="690" y1="95"  x2="950" y2="70"/><line x1="690" y1="95"  x2="950" y2="130"/><line x1="690" y1="95"  x2="950" y2="190"/>
       <line x1="690" y1="145" x2="950" y2="70"/><line x1="690" y1="145" x2="950" y2="130"/><line x1="690" y1="145" x2="950" y2="190"/><line x1="690" y1="145" x2="950" y2="250"/>
       <line x1="690" y1="195" x2="950" y2="70"/><line x1="690" y1="195" x2="950" y2="130"/><line x1="690" y1="195" x2="950" y2="190"/><line x1="690" y1="195" x2="950" y2="250"/>
       <line x1="690" y1="245" x2="950" y2="130"/><line x1="690" y1="245" x2="950" y2="190"/><line x1="690" y1="245" x2="950" y2="250"/>
-      <!-- hidden3(5)@x=950 -> output(2)@x=1120 -->
       <line x1="950" y1="70"  x2="1120" y2="110"/><line x1="950" y1="130" x2="1120" y2="110"/><line x1="950" y1="130" x2="1120" y2="190"/>
       <line x1="950" y1="190" x2="1120" y2="110"/><line x1="950" y1="190" x2="1120" y2="190"/><line x1="950" y1="250" x2="1120" y2="190"/>
     </g>
@@ -255,7 +271,6 @@
       <circle cx="950" cy="70" r="6" opacity="0.75"/><circle cx="950" cy="130" r="6" opacity="0.75"/><circle cx="950" cy="190" r="6" opacity="0.75"/><circle cx="950" cy="250" r="6" opacity="0.75"/>
       <circle cx="1120" cy="110" r="7" opacity="0.9"/><circle cx="1120" cy="190" r="7" opacity="0.9"/>
     </g>
-    <!-- traveling signal particles: give the network a live, "data flowing through the model" motion -->
     <g class="signal-particles" fill="#F0455B">
       <circle r="4"><animateMotion dur="3.4s" begin="0s"   repeatCount="indefinite"><mpath href="#route1"/></animateMotion></circle>
       <circle r="4"><animateMotion dur="3.4s" begin="1.7s" repeatCount="indefinite"><mpath href="#route1"/></animateMotion></circle>
@@ -266,7 +281,6 @@
       <circle r="4"><animateMotion dur="4.0s" begin="1.5s" repeatCount="indefinite"><mpath href="#route4"/></animateMotion></circle>
       <circle r="4"><animateMotion dur="4.0s" begin="3.3s" repeatCount="indefinite"><mpath href="#route4"/></animateMotion></circle>
     </g>
-    <!-- floating ML terminology, drifting near the network itself -->
     <g class="float-labels" font-family="IBM Plex Mono, monospace" fill="#0B5C6B">
       <text x="300" y="30" font-size="13" class="fl fl-1">tanh</text>
       <text x="560" y="270" font-size="13" class="fl fl-2">ReLU</text>
@@ -398,6 +412,53 @@ With an academic background beginning with a Bachelor's and Master's in Computer
       <li class="db-row"><div><h3>PSCRIdb</h3><span class="tag">Database</span><p>Regulatory interactions and networks of pluripotent stem cell lines.</p></div><div class="yr">J. Biosci., 2020</div></li>
       <li class="db-row"><div><h3>DAAB / DAAB-V2</h3><span class="tag">Database</span><p>Curated database of allergy and asthma biomarkers.</p></div><div class="yr">Clin. Exp. Allergy 2015 · Allergy 2021</div></li>
       <li class="db-row"><div><h3>RHO Database</h3><span class="tag">Database</span><p>Bacterial ring-hydroxylating oxygenases for bioremediation &amp; biocatalysis.</p></div><div class="yr">Environ. Microbiol. Rep., 2014</div></li>
+    </ul>
+  </div>
+</section>
+
+<section id="repos">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">GitHub</span>
+      <h2 style="margin-top:8px;">Repositories</h2>
+    </div>
+    <ul class="repo-list reveal">
+      <li class="repo-row">
+        <div><a class="repo-name" href="https://github.com/janatanmoy5/cftr-modulator-design" target="_blank" rel="noopener">cftr-modulator-design</a><span class="repo-desc">End-to-end QSAR, virtual screening, molecular docking, and lead-prioritization pipeline for CFTR modulators.</span></div>
+        <div class="repo-meta"><span class="repo-dot py"></span>Python · MIT · updated 3 minutes ago</div>
+      </li>
+      <li class="repo-row">
+        <div><a class="repo-name" href="https://github.com/janatanmoy5/ppimic50pred" target="_blank" rel="noopener">ppimic50pred</a><span class="repo-desc">Bioactivity prediction tool.</span></div>
+        <div class="repo-meta"><span class="repo-dot ipynb"></span>Jupyter Notebook · updated 12 hours ago</div>
+      </li>
+      <li class="repo-row">
+        <div><a class="repo-name" href="https://github.com/janatanmoy5/profile" target="_blank" rel="noopener">profile</a><span class="repo-desc">This academic profile site.</span></div>
+        <div class="repo-meta"><span class="repo-dot html"></span>HTML · updated last week</div>
+      </li>
+      <li class="repo-row">
+        <div><a class="repo-name" href="https://github.com/janatanmoy5/llm-map" target="_blank" rel="noopener">llm-map</a><span class="repo-desc">llm-map.</span></div>
+        <div class="repo-meta"><span class="repo-dot py"></span>Python · updated Jun 12</div>
+      </li>
+      <li class="repo-row">
+        <div><a class="repo-name" href="https://github.com/janatanmoy5/AICodeGenerator" target="_blank" rel="noopener">AICodeGenerator</a><span class="repo-desc">AI code generator.</span></div>
+        <div class="repo-meta"><span class="repo-dot py"></span>Python · updated Jun 1</div>
+      </li>
+      <li class="repo-row">
+        <div><a class="repo-name" href="https://github.com/janatanmoy5/ChemQuest" target="_blank" rel="noopener">ChemQuest</a><span class="repo-desc">Chemical intelligence, properties, literature, and AI summary.</span></div>
+        <div class="repo-meta"><span class="repo-dot py"></span>Python · MIT · updated Jun 1</div>
+      </li>
+      <li class="repo-row">
+        <div><a class="repo-name" href="https://github.com/janatanmoy5/github.nsqip.io" target="_blank" rel="noopener">github.nsqip.io</a><span class="repo-desc">ACS NSQIP data analysis notebooks.</span></div>
+        <div class="repo-meta"><span class="repo-dot ipynb"></span>Jupyter Notebook · updated Oct 14, 2025</div>
+      </li>
+      <li class="repo-row">
+        <div><a class="repo-name" href="https://github.com/janatanmoy5/sarcoid_RNAseq_analysis" target="_blank" rel="noopener">sarcoid_RNAseq_analysis</a><span class="repo-desc">Sarcoidosis RNA-seq analysis.</span></div>
+        <div class="repo-meta"><span class="repo-dot html"></span>HTML · updated Sep 30, 2024</div>
+      </li>
+      <li class="repo-row">
+        <div><a class="repo-name" href="https://github.com/janatanmoy5/abdpred" target="_blank" rel="noopener">abdpred</a><span class="repo-desc">ABDpred — prediction server for antimicrobial compounds.</span></div>
+        <div class="repo-meta"><span class="repo-dot none"></span>updated Jun 26, 2023</div>
+      </li>
     </ul>
   </div>
 </section>
